@@ -78,17 +78,15 @@ const images = [
 ];
 const container = document.querySelector('.gallery');
 
-function createGalleryItem({ id, preview, original, description }) {
+function createGalleryItem({ preview, original, description }) {
   return `
-    <li data-id="${id}" class="gallery-item">
+    <li class="gallery-item">
       <a class="gallery-link" href="${original}">
         <img
           class="gallery-image"
           src="${preview}"
           data-source="${original}"
           alt="${description}"
-width="360"
-height="200"
         />
       </a>
     </li>
@@ -101,26 +99,26 @@ function createGalleryItemsMarkup(images) {
 
 container.insertAdjacentHTML('beforeend', createGalleryItemsMarkup(images));
 
-container.addEventListener('click', onGalleryClick);
+// container.addEventListener('click', onGalleryClick);
 
-function onGalleryClick(event) {
-  event.preventDefault();
+// function onGalleryClick(event) {
+//   event.preventDefault();
 
-  const target = event.target;
-  if (target.nodeName !== 'IMG') {
-    return;
-  }
-  const card = event.target.closest(`.gallery-item`);
-  const idClicked = card.dataset.id;
-  console.log(idClicked);
+//   const target = event.target;
+//   if (target.nodeName !== 'IMG') {
+//     return;
+//   }
+//   const card = event.target.closest(`.gallery-item`);
+//   const idClicked = card.dataset.id;
+//   console.log(idClicked);
 
-  const largeImageUrl = target.dataset.source;
-  const lightbox = basicLightbox.create(`
-  <img src="${largeImageUrl}" alt="${target.alt}" width="800" height="600">
-`);
+//   const largeImageUrl = target.dataset.source;
+//   const lightbox = basicLightbox.create(`
+//   <img src="${largeImageUrl}" alt="${target.alt}" width="800" height="600">
+// `);
 
-  lightbox.show();
-}
+//   lightbox.show();
+// }
 const lightbox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionDelay: 250,
